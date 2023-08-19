@@ -9,7 +9,7 @@ terraform {
     organization = "Cataprato"
 
     workspaces {
-      name = "cataprato-auth"
+      name = "cataprato-authorizer"
     }
   }
 }
