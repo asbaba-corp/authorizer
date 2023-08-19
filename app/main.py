@@ -55,7 +55,7 @@ def get_user(email: str):
         ) from exception
 
 
-def lambda_handler(event, context):
+def handler(event, context):
     try:
         # print("Method ARN: " + event["methodArn"])
         token = event["authorizationToken"]
