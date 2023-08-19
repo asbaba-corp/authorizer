@@ -58,12 +58,12 @@ module "lambda_function" {
   role_path   = "/tf-managed/"
   policy_path = "/tf-managed/"
 
-  allowed_triggers = {
-    APIGatewayAny = {
-      service    = "apigateway"
-      source_arn = "${data.aws_apigatewayv2_api.cataprato_api.execution_arn}/*/*"
-    }
-  }
+ # allowed_triggers = {
+ #   APIGatewayAny = {
+ #     service    = "apigateway"
+ ##     source_arn = "${data.aws_apigatewayv2_api.cataprato_api.execution_arn}/*/*"
+ #   }
+ # }
 
 
   create_lambda_function_url = true
