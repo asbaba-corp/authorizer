@@ -1,0 +1,11 @@
+name: PR check
+
+on: 
+  pull_request:
+  issue_comment:
+    types: [created]
+  
+jobs:
+  pr-check:
+    uses: asbaba-corp/pipelines/.github/workflows/pr-check-python.yml@main
+    secrets: inherit

@@ -1,0 +1,14 @@
+name: Release Dev
+ 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    uses: asbaba-corp/pipelines/.github/workflows/release-dev.yml@main
+    with:
+      repository_language: "python"
+      config_directory: .
+    secrets: inherit   

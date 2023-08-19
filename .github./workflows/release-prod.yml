@@ -1,0 +1,13 @@
+name: Release Prod
+
+on:
+  release:
+    types: [published]
+    
+jobs:
+    check:
+      uses: asbaba-corp/pipelines/.github/workflows/release-prod.yml@main
+      with:
+        repository_language: "python"
+        module: "auth"
+      secrets: inherit   
