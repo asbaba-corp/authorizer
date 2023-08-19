@@ -57,7 +57,7 @@ def get_user(email: str):
 
 def lambda_handler(event, context):
     try:
-        print("Method ARN: " + event["methodArn"])
+        # print("Method ARN: " + event["methodArn"])
         token = event["authorizationToken"]
     except KeyError as exception:
         raise Exception("Invalid request json")
