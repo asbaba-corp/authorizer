@@ -58,20 +58,18 @@ def get_user(email: str):
 def lambda_handler(event, context):
     try:
         # print("Method ARN: " + event["methodArn"])
-        token = event["authorizationToken"]
+        token = event["Authorization"]
     except KeyError as exception:
-        raise Exception("Invalid request json")
+        return False
 
     """
     Validate the incoming token and user:
     """
-    print("******* STARTED LAMBDA *******")
     email = get_current_user(token)
-    user = get_user(email)
-    print("******* USER FOUND *******")
-    print(user)
-    if not user:
-        raise Exception("Unauthorized")
+    db_user = get_user(email)
+    print(db_user)
+    if not db_user:
+        return False
     return True
 
     # If the token is valid, a policy must be generated which will allow or deny
