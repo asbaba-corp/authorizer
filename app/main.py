@@ -58,9 +58,14 @@ def get_user(email: str):
 def handler(event, context):
     try:
         # print("Method ARN: " + event["methodArn"])
-        token = event["Authorization"]
+        token = event["headers"]["authorization"]
     except KeyError as exception:
-        return False
+        return {
+            "isAuthorized": "false",
+            "context": {
+                "stringKey": "Invalid token",
+            },
+        }
 
     """
     Validate the incoming token and user:
@@ -68,8 +73,18 @@ def handler(event, context):
     email = get_current_user(token)
     user = get_user(email)
     if not user:
-        return False
-    return True
+        return {
+            "isAuthorized": "false",
+            "context": {
+                "stringKey": "User not found",
+            },
+        }
+    return {
+        "isAuthorized": "true",
+        "context": {
+            "stringKey": "Invalid token",
+        },
+    }
 
     # If the token is valid, a policy must be generated which will allow or deny
     # If access is allowed, API Gateway will proceed with
